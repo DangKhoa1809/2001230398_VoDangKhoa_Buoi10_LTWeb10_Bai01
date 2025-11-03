@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="10a8b6b269fb416bb0fa301c4051f33c" Name="Diagram1">
+        <EntityTypeShape EntityType="QL_SachModel.tblChiTiet" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_SachModel.tblHoaDon" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_SachModel.tblKhachHang" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QL_SachModel.tblSanPham" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="QL_SachModel.FK__tblChiTie__MaHoa__0DAF0CB0" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_SachModel.FK__tblChiTie__MaSan__0EA330E9" ManuallyRouted="false" />
+        <AssociationConnector Association="QL_SachModel.FK__tblHoaDon__MaKha__08EA5793" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

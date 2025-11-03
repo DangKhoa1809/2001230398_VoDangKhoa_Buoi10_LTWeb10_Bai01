@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Tạo đơn đặt hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var kh = ViewBag.KhachHang;
+    var gio = Session["GioHang"] as LTWeb10_Bai01.Models.GioHang;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container my-5">
+        <h3 class="text-center text-success fw-bold mb-4">THÔNG TIN ĐẶT HÀNG</h3>
+
+        <form action="/DatHang/TaoDonDatHang" method="post" class="border rounded-3 p-4 shadow-sm bg-white">
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <p><strong>Họ tên:</strong> @kh.TenKhachHang</p>
+                    <p><strong>Địa chỉ:</strong> @kh.DiaChi</p>
+                    <p><strong>Ngày đặt:</strong> @DateTime.Now.ToShortDateString()</p>
+                </div>
+
+                <div class="col-md-6">
+                    <p><strong>Điện thoại:</strong> @kh.SoDienThoai</p>
+                    <div class="mb-2">
+                        <label for="txtDate" class="form-label"><strong>Ngày giao:</strong></label>
+                        <input type="date" class="form-control w-75" name="txtDate" id="txtDate" required />
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <h5 class="text-center mb-3">Thông tin đơn hàng</h5>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle text-center">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Mã sách</th>
+                            <th>Tên sách</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá (VND)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (gio != null && gio.lst.Count > 0)
+                        {
+                            foreach (var item in gio.lst)
+                            {
+                                <tr>
+                                    <td>@item.iMaSach</td>
+                                    <td>@item.sTenSach</td>
+                                    <td>@item.iSoLuong</td>
+                                    <td>@String.Format("{0:N0}", item.dDonGia)</td>
+                                </tr>
+                            }
+
+                            <tr class="fw-bold table-light">
+                                <td colspan="2" class="text-end">Tổng:</td>
+                                <td>@gio.TongSLHang()</td>
+                                <td>@String.Format("{0:N0}", gio.TongThanhTien())</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="text-center">Giỏ hàng trống.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-success px-4 py-2 fw-bold">
+                    <i class="bi bi-cart-check"></i> Đồng ý đặt hàng
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

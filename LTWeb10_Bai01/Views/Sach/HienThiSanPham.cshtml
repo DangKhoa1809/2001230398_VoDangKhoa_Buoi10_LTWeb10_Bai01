@@ -1,0 +1,44 @@
+﻿@model List<LTWeb10_Bai01.Models.tblSanPham>
+
+@{
+    ViewBag.Title = "Hiển thị sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container mt-4">
+        <h4 class="text-center text-success fw-bold mb-4">Danh sách sản phẩm</h4>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card shadow-sm h-100">
+                        <img src="~/Images/@item.HinhAnh" class="card-img-top product-img" alt="@item.TenSanPham" />
+
+                        <div class="card-body text-center d-flex flex-column">
+                            <h6 class="card-title fw-semibold">@item.TenSanPham</h6>
+                            <p class="text-danger fw-bold mb-2">
+                                @string.Format("{0:N0} VND", item.DonGia)
+                            </p>
+                            <a href="@Url.Action("ThemMatHang", "DatHang", new { msp = item.MaSanPham })"
+                               class="btn btn-outline-success btn-sm mt-auto fw-bold">
+                                <i class="bi bi-cart-plus fw-bold"></i> CHỌN MUA
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
